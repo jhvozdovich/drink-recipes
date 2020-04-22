@@ -12,7 +12,8 @@ $(document).ready(function() {
       let cocktailService = new CocktailService();
       const response = await cocktailService.getCocktailInfo(drink);
       getElements(response);
-      cocktailService.getIngredientArray(response);
+      let ingredientArray = cocktailService.getIngredientArray(response);
+      console.log(ingredientArray);
     })();
 
  

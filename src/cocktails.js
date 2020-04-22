@@ -17,7 +17,7 @@ export class CocktailService {
     
   }
 
-  async getIngredientsFromDrink (drink) {
+  getIngredientsFromDrink (drink) {
     let ingredients = [];
     $.each(drink, function(key,value){
       if (key.startsWith("strIngredient") && value) {
@@ -30,7 +30,6 @@ export class CocktailService {
   async getIngredientArray(response) {
     if (response) {
       let drinkArray = response.drinks[0];
-      
       let ingredients = this.getIngredientsFromDrink(drinkArray);
       console.log(ingredients);
       return ingredients;
