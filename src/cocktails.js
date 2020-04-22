@@ -14,7 +14,6 @@ export class CocktailService {
     } catch(error) {
       return false;
     }
-    
   }
 
   getIngredientsFromDrink (drink) {
@@ -27,7 +26,7 @@ export class CocktailService {
     return ingredients;
   }
 
-  async getIngredientArray(response) {
+  getIngredientArray(response) {
     if (response) {
       let drinkArray = response.drinks[0];
       let ingredients = this.getIngredientsFromDrink(drinkArray);

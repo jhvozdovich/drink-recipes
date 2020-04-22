@@ -11,20 +11,15 @@ $(document).ready(function() {
     (async () => {
       let cocktailService = new CocktailService();
       const response = await cocktailService.getCocktailInfo(drink);
-      getElements(response);
-      let ingredientArray = cocktailService.getIngredientArray(response);
-      console.log(ingredientArray);
-    })();
-
- 
-
-    function getElements(response) {
+    
       if (response) {
+        let ingredientArray = cocktailService.getIngredientArray(response);
+        console.log(ingredientArray);
         //LOOK FOR JSON KEY VALUE NAMES TO REFERENCE INGREDIENTS
-        $(".showIngredients").text(`The ingredients for a ${drink} are ${response.drinks[0].strIngredient1}`);
+        $(".showIngredients").text(`The ingredients for a ${drink} are ${ingredientArray}`);
       } else {
         //ERROR MESSAGE
       }
-    }
+    })();
   });
-});  
+});
