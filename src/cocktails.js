@@ -1,11 +1,5 @@
-process.env.API_KEY
-
-const url = ``
-
-https://www.thecocktaildb.com/api/json/v1/   1/search.php   ?s=   margarita
-
 export class CocktailService {
-  async getCocktailName(drink) {
+  async getCocktailIngredients(drink) {
     try {
       let response = await fetch(`https://www.thecocktaildb.com/api/json/v1/${process.env.API_KEY}/search.php?s=${drink}`);
       let jsonifiedResponse;
@@ -15,7 +9,7 @@ export class CocktailService {
         jsonifiedResponse = false;
       }
       return jsonifiedResponse;
-    } catch {
+    } catch(error) {
       return false;
     }
   }
