@@ -6,9 +6,8 @@ import './styles.css';
 import { CocktailService } from './../src/cocktails';
 
 $(document).ready(function() {
-  $("#cocktailSearch").submit(function(event) {
-    event.preventDefault();
-    const drink = $("#cocktailInput").val();
+  $("#cocktailSearch").click(function() {
+    let drink = $("#cocktailInput").val();
     console.log(drink);
 
     (async () => {
