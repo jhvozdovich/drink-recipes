@@ -10,27 +10,12 @@ $(document).ready(function() {
     let drink = $("#cocktailInput").val();
     (async () => {
       let cocktailService = new CocktailService();
-      const response = await cocktailService.getCocktailIngredients(drink);
+      const response = await cocktailService.getCocktailInfo(drink);
       getElements(response);
-      getIngredientArray(response);
+      cocktailService.getIngredientArray(response);
     })();
 
-    function getIngredientArray(response) {
-      if (response) {
-        let drinkArray = response.drinks[0];
-        let valueArray = Object.values(drinkArray);
-        console.log(valueArray);
-        console.log(valueArray[21]);
-        let finalIngredientArray = [];
-        for (let i = 21; i < 36; i++) { 
-          if(valueArray[i]) {
-            finalIngredientArray.push(valueArray[i])
-          }
-        }
-        console.log(finalIngredientArray);
-        return finalIngredientArray;
-      }
-    }
+ 
 
     function getElements(response) {
       if (response) {

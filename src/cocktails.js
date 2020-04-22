@@ -1,5 +1,7 @@
+import $ from 'jquery';
+
 export class CocktailService {
-  async getCocktailIngredients(drink) {
+  async getCocktailInfo(drink) {
     try {
       let response = await fetch(`https://www.thecocktaildb.com/api/json/v1/${process.env.API_KEY}/search.php?s=${drink}`);
       let jsonifiedResponse;
@@ -12,9 +14,29 @@ export class CocktailService {
     } catch(error) {
       return false;
     }
+    
   }
 
- 
+  getIngredientsFromDrink = (drink) => {
+    let ingredients = [];
+    $.each(drink, function(key,value){
+      if (key.startsWith("strIngredient") && value) {
+        ingredients.push(value);
+      }
+    })
+    return ingredients;
+  };
+
+  async getIngredientArray() {
+    let response = await this.getCocktailInfo();
+    if (response) {
+      let drinkArray = response.drinks[0];
+      
+      let ingredients = getIngredientsFromDrink(drinkArray);
+      console.log(ingredients);
+      return ingredients;
+    }
+  }
 }
 
 
