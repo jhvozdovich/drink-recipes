@@ -17,22 +17,21 @@ export class CocktailService {
     
   }
 
-  getIngredientsFromDrink = (drink) => {
+  async getIngredientsFromDrink (drink) {
     let ingredients = [];
     $.each(drink, function(key,value){
       if (key.startsWith("strIngredient") && value) {
         ingredients.push(value);
       }
-    })
+    });
     return ingredients;
-  };
+  }
 
-  async getIngredientArray() {
-    let response = await this.getCocktailInfo();
+  async getIngredientArray(response) {
     if (response) {
       let drinkArray = response.drinks[0];
       
-      let ingredients = getIngredientsFromDrink(drinkArray);
+      let ingredients = this.getIngredientsFromDrink(drinkArray);
       console.log(ingredients);
       return ingredients;
     }
