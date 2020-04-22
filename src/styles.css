@@ -1,0 +1,10 @@
+body {
+  background-color: lightgray;
+}
+
+.jumbotron {
+  background-color: rgb(218, 64, 64);
+  border-style: groove;
+  border-color: black;
+  text-align: center;
+}
