@@ -31,6 +31,12 @@ function displayCocktail(drink) {
   drinkDisplay.html(htmlForDrink);
 }
 
+// function displayGif(gifUrl) {
+//   let gifDisplay = $("#showGif");
+//   let htmlForGif = "<img src=" + gifUrl + ">";
+//   gifDisplay.html(htmlForGif);
+// }
+
 // function expandIngredientList() {
 //   let ingredientListDisplay = $("#expandIngredients");
 //   let htmlForIngredients = "";
@@ -117,6 +123,9 @@ $(document).ready(function() {
         let ingredients = randomCocktailService.getRandomIngredientArray(response);
         displayCocktail(drink.toUpperCase());
         displayIngredientList(ingredients);
+        // let gifUrl = randomCocktailService.getGif(responseGiph);
+        // const responseGiph = await randomCocktailService.giphyCall(drink);
+        // displayGif(gifUrl);
       } else {
         $("#showDrinksList").text("");
         $("#showIngredientsList").text("");
