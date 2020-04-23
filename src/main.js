@@ -12,17 +12,14 @@ $(document).ready(function() {
       let cocktailService = new CocktailService();
       const response = await cocktailService.getCocktailInfo(drink);
     
-      if (response) {
-        //call getDrinkList here instead of getIngredientArray
-        //let = drinkList = cocktailService.getDrinkList(response);
-        //Show below in a UL
-        //$(".showDrinks").text(`These are the different drinks ${drinkList} `);
+      if (response.drinks === null) {
+        $(".showIngredients").text(`We could not find your drink! Check your spelling?`);
+      } else if (response) {
         let ingredientArray = cocktailService.getIngredientArray(response);
-        console.log(ingredientArray);
-        //LOOK FOR JSON KEY VALUE NAMES TO REFERENCE INGREDIENTS
+        //Show below in a UL
         $(".showIngredients").text(`The ingredients for a ${drink} are ${ingredientArray}`);
       } else {
-        //ERROR MESSAGE
+        $(".showIngredients").text(`You request could not be processed! Check your API key?`);
       }
     })();
   });
@@ -32,13 +29,13 @@ $(document).ready(function() {
     (async () => {
       let cocktailService = new CocktailService();
       const response = await cocktailService.getCocktailInfo(drink);
-      console.log(response);
-
-      if (response) {
+      if (response.drinks === null) {
+        $(".showIngredients").text(`We could not find your drink! Check your spelling?`);
+      } else if (response) {
         let drinkList = cocktailService.getDrinkList(response);
         $(".showIngredients").text(`Drink Ideas: ${drinkList}`);
       } else {
-        ///ERROR
+        $(".showIngredients").text(`You request could not be processed! Check your API key?`);
       }
     })();
   });
