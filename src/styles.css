@@ -1,16 +1,32 @@
 body {
   background-color: lightgray;
   text-align: center;
+  font-family: Marker Felt, fantasy;
+  color: black;
+  margin: 5%;
+}
+
+.btn {
+  background-image: linear-gradient(to top, #df0211, #e35102, #e57808, #e59a24, #e5b844, #e7bc48, #e8c14b, #eac54f, #eeb135, #f39b1c, #f78305, #fb6600);
+  color: black;
+  border-color: black;
+  font-family: Chalkduster, fantasy;
+}
+
+.btn:hover {
+  background-image: linear-gradient(to bottom, #df0211, #e35102, #e57808, #e59a24, #e5b844, #e7bc48, #e8c14b, #eac54f, #eeb135, #f39b1c, #f78305, #fb6600);
+  color: #df0211;
+  border-color: #df0211;
 }
 
 .jumbotron {
   background-image: linear-gradient(to top, #df0211, #e35102, #e57808, #e59a24, #e5b844, #e7bc48, #e8c14b, #eac54f, #eeb135, #f39b1c, #f78305, #fb6600);
   border-style: groove;
   border-color: black;
+  font-family: Chalkduster, fantasy;
   text-align: center;
   margin: 25px;
 }
-
 
 .showIngredients{
   display: block;
@@ -21,8 +37,8 @@ body {
 }
 
 #top, #bottom, #left, #right {
-	background-image: url(https://bit.ly/2KqnVX0);opacity:0.6;
-	position: fixed;
+	background-image: url(https://bit.ly/2KqnVX0);
+  position: fixed;
 	}
 	#left, #right {
 		top: 0; bottom: 0;
