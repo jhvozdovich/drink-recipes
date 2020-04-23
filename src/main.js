@@ -5,15 +5,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { CocktailService } from './../src/cocktails';
 
+function displayIngredientList(ingredientArray) {
+  let ingredientListDisplay = $("#showDrinksList");
+  let htmlForIngredients = "";
+  
+  ingredientArray.forEach(function(ingredient) {
+    htmlForIngredients += "<li id=" + ingredient.split(" ").join("") + ">" + ingredient + "</li>";
+  });
+  ingredientListDisplay.html(htmlForIngredients);
+}
+
 function displayCocktailList(drinkList) {
   let drinkListDisplay = $("#showDrinksList");
   let htmlForDrinks = "";
-  console.log(drinkList);
   drinkList.forEach(function(drink) {
-    console.log(drink);
     htmlForDrinks += "<li id=" + drink.split(" ").join("") + ">" + drink + "</li>";
   });
-  console.log(htmlForDrinks);
   drinkListDisplay.html(htmlForDrinks);
 }
 
@@ -25,13 +32,15 @@ $(document).ready(function() {
       const response = await cocktailService.getCocktailInfo(drink);
     
       if (response.drinks === null) {
-        $(".showIngredients").text(`We could not find your drink! Check your spelling?`);
+        $("#showErrors").text(`We could not find your drink! Check your spelling?`);
       } else if (response) {
+        $("#showErrors").text("");
         let ingredientArray = cocktailService.getIngredientArray(response);
         //Show below in a UL
-        $(".showIngredients").text(`The ingredients for a ${drink} are ${ingredientArray}`);
+        displayIngredientList(ingredientArray);
+        // $(".showIngredients").text(`The ingredients for a ${drink} are ${ingredientArray}`);
       } else {
-        $(".showIngredients").text(`You request could not be processed! Check your API key?`);
+        $("#showErrors").text(`You request could not be processed! Check your API key?`);
       }
     })();
   });
@@ -42,13 +51,14 @@ $(document).ready(function() {
       let cocktailService = new CocktailService();
       const response = await cocktailService.getCocktailInfo(drink);
       if (response.drinks === null) {
-        $(".showIngredients").text(`We could not find your drink! Check your spelling?`);
+        $("#showErrors").text(`We could not find your drink! Check your spelling?`);
       } else if (response) {
+        $("#showErrors").text("");
         let drinkList = cocktailService.getDrinkList(response);
         displayCocktailList(drinkList);
         // $(".showIngredients").text(`Drink Ideas: ${drinkList}`);
       } else {
-        $(".showIngredients").text(`You request could not be processed! Check your API key?`);
+        $("#showErrors").text(`You request could not be processed! Check your API key?`);
       }
     })();
   });
