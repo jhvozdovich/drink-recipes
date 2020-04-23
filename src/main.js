@@ -5,6 +5,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { CocktailService } from './../src/cocktails';
 
+function displayCocktailList(drinkList) {
+  let drinkListDisplay = $("#showDrinksList");
+  let htmlForDrinks = "";
+  console.log(drinkList);
+  drinkList.forEach(function(drink) {
+    console.log(drink);
+    htmlForDrinks += "<li id=" + drink.split(" ").join("") + ">" + drink + "</li>";
+  });
+  console.log(htmlForDrinks);
+  drinkListDisplay.html(htmlForDrinks);
+}
+
 $(document).ready(function() {
   $("#cocktailSearch").click(function() {
     let drink = $("#cocktailInput").val();
@@ -33,7 +45,8 @@ $(document).ready(function() {
         $(".showIngredients").text(`We could not find your drink! Check your spelling?`);
       } else if (response) {
         let drinkList = cocktailService.getDrinkList(response);
-        $(".showIngredients").text(`Drink Ideas: ${drinkList}`);
+        displayCocktailList(drinkList);
+        // $(".showIngredients").text(`Drink Ideas: ${drinkList}`);
       } else {
         $(".showIngredients").text(`You request could not be processed! Check your API key?`);
       }
