@@ -26,4 +26,20 @@ $(document).ready(function() {
       }
     })();
   });
+
+  $("#diversifySearch").click(function() {
+    let drink = $("#diversifyInput").val();
+    (async () => {
+      let cocktailService = new CocktailService();
+      const response = await cocktailService.getCocktailInfo(drink);
+      console.log(response);
+
+      if (response) {
+        let drinkList = cocktailService.getDrinkList(response);
+        $(".showIngredients").text(`Drink Ideas: ${drinkList}`);
+      } else {
+        ///ERROR
+      }
+    })();
+  });
 });

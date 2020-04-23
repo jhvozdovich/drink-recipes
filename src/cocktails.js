@@ -26,13 +26,13 @@ export class CocktailService {
     return ingredients;
   }
 
-  //getDrinkList (response) {
-  //for (i = 0, i <= response.drinks.length, i++){ 
-  //let drinkList = []
-  //drinkList.push(response.drinks[i].strDrink);
-  //}
-  //return drinkList
-  //};
+  getDrinkList (response) {
+    let drinkList = [];
+    for (let i = 1; i <= (response.drinks.length - 1); i++){ 
+      drinkList.push(response.drinks[i].strDrink);
+    }
+    return drinkList;
+  }
   
   getIngredientArray(response) {
     if (response) {
