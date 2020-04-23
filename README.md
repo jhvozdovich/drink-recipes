@@ -13,7 +13,7 @@ _A webpage that takes user input and returns data requested from TheCoctailDB AP
 | :------------- | :------------- | :------------- |
 | **User can input a drink name** | User Input:”Manhattan” | Output: “Manhattan” |
 | **User can request ingredient information** | User Input:”Manhattan - Ingredients” | Output: “Whiskey, Vermouth, Bitters, Garnish-Cherry” |
-| **User can request photos** | User Input:”Manhattan - Photos” | Output: “Display drink photo” |
+| **User can request a random drink** | User Input:”Surprise me!” | Output: “Margarita: Tequilla, triple sec, lime juice, salt” |
 
 
 ## Setup/Installation Requirements
