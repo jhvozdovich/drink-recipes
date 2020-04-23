@@ -13,6 +13,10 @@ $(document).ready(function() {
       const response = await cocktailService.getCocktailInfo(drink);
     
       if (response) {
+        //call getDrinkList here instead of getIngredientArray
+        //let = drinkList = cocktailService.getDrinkList(response);
+        //Show below in a UL
+        //$(".showDrinks").text(`These are the different drinks ${drinkList} `);
         let ingredientArray = cocktailService.getIngredientArray(response);
         console.log(ingredientArray);
         //LOOK FOR JSON KEY VALUE NAMES TO REFERENCE INGREDIENTS
