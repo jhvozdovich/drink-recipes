@@ -28,7 +28,7 @@ export class CocktailService {
 
   getDrinkList (response) {
     let drinkList = [];
-    for (let i = 1; i <= (response.drinks.length - 1); i++){ 
+    for (let i = 0; i <= (response.drinks.length - 1); i++){ 
       drinkList.push(response.drinks[i].strDrink);
     }
     return drinkList;
@@ -44,4 +44,44 @@ export class CocktailService {
   }
 }
 
+
+export class RandomCocktailService {
+  async getRandomCocktailInfo() {
+    try {
+      let response = await fetch(`https://www.thecocktaildb.com/api/json/v1/${process.env.API_KEY}/random.php`);
+      let jsonifiedResponse;
+      if (response.ok && response.status === 200) {
+        jsonifiedResponse = await response.json();
+      } else {
+        jsonifiedResponse = false;
+      }
+      return jsonifiedResponse;
+    } catch(error) {
+      return false;
+    }
+  }
+
+  getRandomDrink (response) {
+    let drink = response.drinks[0].strDrink;
+    return drink;
+  }
+
+  getIngredientsFromDrink (drinkArray) {
+    let ingredients = [];
+    $.each(drinkArray, function(key,value){
+      if (key.startsWith("strIngredient") && value) {
+        ingredients.push(value);
+      }
+    });
+    return ingredients;
+  }
+
+  getRandomIngredientArray(response) {
+    if (response) {
+      let drinkArray = response.drinks[0];
+      let ingredients = this.getIngredientsFromDrink(drinkArray);
+      return ingredients;
+    }
+  }
+}
 

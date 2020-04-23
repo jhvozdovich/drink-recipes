@@ -4,6 +4,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { CocktailService } from './../src/cocktails';
+import { RandomCocktailService } from './../src/cocktails';
 
 function displayIngredientList(ingredientArray) {
   let ingredientListDisplay = $("#showIngredientsList");
@@ -22,6 +23,12 @@ function displayCocktailList(drinkList) {
     htmlForDrinks += "<li id=" + drink.split(" ").join("") + ">" + drink + "</li>";
   });
   drinkListDisplay.html(htmlForDrinks);
+}
+
+function displayCocktail(drink) {
+  let drinkDisplay = $("#showDrinksList");
+  let htmlForDrink = "<p id=" + drink.split(" ").join("") + "> <strong>" + drink + "</strong></p>";
+  drinkDisplay.html(htmlForDrink);
 }
 
 // function expandIngredientList() {
@@ -54,6 +61,7 @@ $(document).ready(function() {
         $("#showErrors").text("");
         let ingredientArray = cocktailService.getIngredientArray(response);
         //Show below in a UL
+        displayCocktail(drink.toUpperCase());
         displayIngredientList(ingredientArray);
       } else {
         $("#showDrinksList").text("");
@@ -77,6 +85,25 @@ $(document).ready(function() {
         $("#showIngredientsList").text("");
         let drinkList = cocktailService.getDrinkList(response);
         displayCocktailList(drinkList);
+      } else {
+        $("#showDrinksList").text("");
+        $("#showIngredientsList").text("");
+        $("#showErrors").text(`You request could not be processed! Check your API key?`);
+      }
+    })();
+  });
+
+  $("#randomSearch").click(function() {
+    (async () => {
+      let randomCocktailService = new RandomCocktailService();
+      const response = await randomCocktailService.getRandomCocktailInfo();
+      if (response) {
+        $("#showErrors").text("");
+        $("#showIngredientsList").text("");
+        let drink = randomCocktailService.getRandomDrink(response);
+        let ingredients = randomCocktailService.getRandomIngredientArray(response);
+        displayCocktail(drink.toUpperCase());
+        displayIngredientList(ingredients);
       } else {
         $("#showDrinksList").text("");
         $("#showIngredientsList").text("");
