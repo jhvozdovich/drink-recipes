@@ -85,27 +85,27 @@ export class RandomCocktailService {
     }
   }
 
-  // async giphyCall(drink) {
-  //   try {
-  //     let response = await fetch(`http://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY_GIPHY}&q=${drink}`);
-  //     let jsonifiedResponse;
-  //     if (response.ok && response.status === 200) {
-  //       jsonifiedResponse = await response.json();
-  //     } else {
-  //       jsonifiedResponse = false;
-  //     }
-  //     return jsonifiedResponse;
-  //   } catch(error) {
-  //     return false;
-  //   } 
-  // }
+  async giphyCall(drink) {
+    try {
+      let response = await fetch(`http://api.giphy.com/v1/gifs/search?api_key=${process.env.API_KEY_GIPHY}&q=${drink}`);
+      let jsonifiedResponse;
+      if (response.ok && response.status === 200) {
+        jsonifiedResponse = await response.json();
+      } else {
+        jsonifiedResponse = false;
+      }
+      return jsonifiedResponse;
+    } catch(error) {
+      return false;
+    } 
+  }
 
-  // getGif(gifResponse) {
-  //   if (gifResponse) {
-  //     let gifUrl = gifResponse.data[0].url;
-  //     console.log(gifUrl);
-  //     return gifUrl;
-  //   }
-  // }
+  getGif(gifResponse) {
+    if (gifResponse) {
+      let gifUrl = gifResponse.data[0].url;
+      console.log(gifUrl);
+      return gifUrl;
+    }
+  }
 }
 

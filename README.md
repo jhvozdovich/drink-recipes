@@ -28,7 +28,7 @@ _A webpage that takes user input and returns data requested from TheCoctailDB AP
 
 ## Known Bugs
 
-No known issues as of 4/22/2020
+Gifs will not currently load but are being referenced 4/23/2020
 
 ## Support and contact details
 
