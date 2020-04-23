@@ -16,9 +16,9 @@ export class CocktailService {
     }
   }
 
-  getIngredientsFromDrink (drink) {
+  getIngredientsFromDrink (drinkArray) {
     let ingredients = [];
-    $.each(drink, function(key,value){
+    $.each(drinkArray, function(key,value){
       if (key.startsWith("strIngredient") && value) {
         ingredients.push(value);
       }
@@ -26,8 +26,17 @@ export class CocktailService {
     return ingredients;
   }
 
+  //getDrinkList (response) {
+  //for (i = 0, i <= response.drinks.length, i++){ 
+  //let drinkList = []
+  //drinkList.push(response.drinks[i].strDrink);
+  //}
+  //return drinkList
+  //};
+  
   getIngredientArray(response) {
     if (response) {
+      //We should get the name of all the drinks and let user pick which drink they would like to see ingredients for via for loop?
       let drinkArray = response.drinks[0];
       let ingredients = this.getIngredientsFromDrink(drinkArray);
       console.log(ingredients);
