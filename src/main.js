@@ -52,6 +52,7 @@ $(document).ready(function() {
       let cocktailService = new CocktailService();
       const response = await cocktailService.getCocktailInfo(drink);
     
+
       if (response.drinks === null) {
         $("#showDrinksList").text("");
         $("#showIngredientsList").text("");
@@ -59,6 +60,7 @@ $(document).ready(function() {
       } else if (response) {
         $("#showDrinksList").text("");
         $("#showErrors").text("");
+
         let ingredientArray = cocktailService.getIngredientArray(response);
         //Show below in a UL
         displayCocktail(drink.toUpperCase());
