@@ -99,11 +99,9 @@ export class RandomCocktailService {
       return false;
     } 
   }
-
   getGif(gifResponse) {
     if (gifResponse) {
       let gifUrl = gifResponse.data[0].images.downsized_large.url;
-      console.log("GIF URL" + gifUrl);
       return gifUrl;
     }
   }
